@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "INTEGRAL.h"
 using namespace std;
 
 double Integral_Trapezoid(double (*function)(double x, double y), double x0, double xn, 
