@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "INTEGRAL.h"
 
 using namespace std;
 
@@ -27,6 +27,7 @@ int main() {
 	cout << "precision(if 0 then assume the default 10^[-4]) = ";
 	cin >> precision;
 	cout << endl;
+
 	if (!precision) { precision = 1e-4; }
 
 	bool choice;
