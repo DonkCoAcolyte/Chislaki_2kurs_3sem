@@ -1,7 +1,7 @@
 #include "INTEGRAL.h"
 using namespace std;
 
-double Integral_Trapezoid(double (*function)(double x, double y), double x0, double xn, 
+double Integral_Trapezoid(double (*function)(double x), double x0, double xn, 
 	                      double precision, int n, double previous_answ) {
 	double h = xn - x0;
 	double dx = h / n;
@@ -9,10 +9,10 @@ double Integral_Trapezoid(double (*function)(double x, double y), double x0, dou
 	double xi = x0;
 	for (int i = 1; i < n; i++) {
 		xi += dx;
-		answ += function(xi, 0);
+		answ += function(xi);
 	}
 	answ *= 2;
-	answ += function(x0, 0) + function(xn, 0);
+	answ += function(x0) + function(xn);
 	answ = answ * dx / 2; // final answ
 
 	if (abs(answ - previous_answ) <= 3 * precision) {
@@ -23,7 +23,37 @@ double Integral_Trapezoid(double (*function)(double x, double y), double x0, dou
 	}
 }
 
-double Integral_Simpson(double (*function)(double x, double y), double x0, double xn,
+double Integral_Simpsonx(double (*function)(double x), double x0, double xn,
+	double precision, int n, double previous_answ) {
+	double h = xn - x0;
+	double dx = h / n;
+	double answ = 0;
+	double xi = x0;
+		int x = x0;
+	for (int i = 1; i < n/2; i++) {
+		answ += function(x);
+		x += 2 * dx;
+	}
+	answ *= 2;
+	x = x0;
+	for (int i = 1; i < n / 2; i++) {
+		x += dx;
+		answ += function(x);
+		x += dx;
+	}
+	answ *= 2;
+	answ += function(x0) + function(xn);
+	answ = answ * dx / 3; // final answ
+
+	if (abs(answ - previous_answ) <= 15 * precision) {
+		return answ;
+	}
+	else {
+		return Integral_Simpsonx(function, x0, xn, precision, n * 2, answ);
+	}
+}
+
+double Integral_Simpsonxy(double (*function)(double x, double y), double x0, double xn,
 	double y0, double yn, double precision, int n, double previous_answ) {
 	double dx = (xn - x0) / n;
 	double dy = (yn - y0) / n;
@@ -52,6 +82,6 @@ double Integral_Simpson(double (*function)(double x, double y), double x0, doubl
 		return answ;
 	}
 	else {
-		return Integral_Simpson(function, x0, xn, y0, yn, precision, n * 2, answ);
+		return Integral_Simpsonxy(function, x0, xn, y0, yn, precision, n * 2, answ);
 	}
 }

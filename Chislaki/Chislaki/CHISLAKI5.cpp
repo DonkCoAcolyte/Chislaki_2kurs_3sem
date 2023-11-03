@@ -4,15 +4,13 @@ using namespace std;
 
 #define PRECISION_DEFAULT 1e-4
 
-double function_dud(double x, double y) {
-	return 1;
+double function10x(double x) {
+	return 0.1*x*x/(log10(x));
 }
 
-double function1(double x, double y) {
-	double answ = pow((1 + x*x*x), 1 / 2);
-	return answ;
+double function32xy(double x, double y) {
+	return 4 - x*x - y*y;
 }
-
 int main() {
 
 	double x0;
@@ -52,10 +50,10 @@ int main() {
 		cin >> yn;
 		cout << endl;
 
-		cout << "Simpson = " << Integral_Simpson(function_dud, x0, xn, y0, yn) << endl;
+		cout << "Simpson = " << Integral_Simpsonxy(function32xy, x0, xn, y0, yn) << endl;
 	}
 	else {
-		cout << "Trapezoid = " << Integral_Trapezoid(function_dud, x0, xn) << endl;
-		cout << "Simpson = " << Integral_Simpson(function_dud, x0, xn) << endl;
+		cout << "Trapezoid = " << Integral_Trapezoid(function10x, x0, xn) << endl;
+		cout << "Simpson = " << Integral_Simpsonx(function10x, x0, xn) << endl;
 	}
 }
