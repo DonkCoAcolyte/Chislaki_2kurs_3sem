@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Chislaki", "Chislaki\Chislaki.vcxproj", "{0FC3240E-1CB1-425A-A3BB-A12EA06AF515}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B80A098A-BD7F-40EC-96E6-6B68FF2A5EAB}"
+	ProjectSection(SolutionItems) = preProject
+		Chislaki\CHISLAKI5.cpp = Chislaki\CHISLAKI5.cpp
+		Chislaki\INTEGRAL.cpp = Chislaki\INTEGRAL.cpp
+		Chislaki\INTEGRAL.h = Chislaki\INTEGRAL.h
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FC3240E-1CB1-425A-A3BB-A12EA06AF515}.Debug|x64.ActiveCfg = Debug|x64
+		{0FC3240E-1CB1-425A-A3BB-A12EA06AF515}.Debug|x64.Build.0 = Debug|x64
+		{0FC3240E-1CB1-425A-A3BB-A12EA06AF515}.Debug|x86.ActiveCfg = Debug|Win32
+		{0FC3240E-1CB1-425A-A3BB-A12EA06AF515}.Debug|x86.Build.0 = Debug|Win32
+		{0FC3240E-1CB1-425A-A3BB-A12EA06AF515}.Release|x64.ActiveCfg = Release|x64
+		{0FC3240E-1CB1-425A-A3BB-A12EA06AF515}.Release|x64.Build.0 = Release|x64
+		{0FC3240E-1CB1-425A-A3BB-A12EA06AF515}.Release|x86.ActiveCfg = Release|Win32
+		{0FC3240E-1CB1-425A-A3BB-A12EA06AF515}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {255C40C4-E7B1-4033-AF09-354F299EBC6F}
+	EndGlobalSection
+EndGlobal
