@@ -53,6 +53,10 @@ int main() {
 		cout << "Simpson = " << Integral_Simpsonxy(function32xy, x0, xn, y0, yn) << endl;
 	}
 	else {
+		if (1 >= x0 && 1 <= xn) {
+			cout << "1 is part of [x0;xn], cannot find (...)/lg1 (division by zero)." << endl;
+			return 1;
+		}
 		cout << "Trapezoid = " << Integral_Trapezoid(function10x, x0, xn) << endl;
 		cout << "Simpson = " << Integral_Simpsonx(function10x, x0, xn) << endl;
 	}
