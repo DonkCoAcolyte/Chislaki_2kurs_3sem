@@ -128,6 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Chislaki.cpp" />
+    <ClCompile Include="functions.cpp" />
+    <ClCompile Include="NLAU.cpp" />
+    <ClCompile Include="SLAU.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="functions.h" />
+    <ClInclude Include="NLAU.h" />
+    <ClInclude Include="SLAU.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
