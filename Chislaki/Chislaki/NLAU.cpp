@@ -74,3 +74,43 @@ vector<double> NLAUsolver(double function1(double x, double y), double function2
 	}
 
 }
+
+vector<double> NLAUsolverALT(double function1(double x, double y), double function2(double x, double y),
+	double df1Bydx(double x, double y), double df1Bydy(double x, double y), double df2Bydx(double x, double y), double df2Bydy(double x, double y),
+	vector<double> guessPoint, double M, double precision1, double precision2) {
+
+	/*double SLAU[3][2];*/
+	vector<vector<double>> SLAU = vector<vector<double>>();
+	for (int i = 0; i < 2; i++) {
+		SLAU.push_back(vector<double>(3, 0));
+	}
+
+
+	SLAU[0][2] = (-1) * function1(guessPoint[0], guessPoint[1]);
+	SLAU[1][2] = (-1) * function2(guessPoint[0], guessPoint[1]);
+	// found -F(X)
+
+	SLAU[0][0] = df1Bydx(guessPoint[0], guessPoint[1]);
+	SLAU[0][1] = df1Bydy(guessPoint[0], guessPoint[1]);
+	SLAU[1][0] = df2Bydx(guessPoint[0], guessPoint[1]);
+	SLAU[1][1] = df2Bydy(guessPoint[0], guessPoint[1]);
+	// found J(x)
+
+	//J(x) and -F(x) have been combined into a matrix of -f(X) = f'(X)*deltaX;
+
+	vector<double> deltaX(2, 0);
+	solveSLAU(SLAU, deltaX);
+
+	vector<double> newPoint(2, 0);
+	for (int i = 0; i < 2; i++) {
+		newPoint[i] = guessPoint[i] + deltaX[i];
+	}
+
+	if (endCondition(function1, function2, newPoint, deltaX, precision1, precision2)) {
+		return newPoint;
+	}
+	else {
+		return NLAUsolverALT(function1, function2, df1Bydx, df1Bydy, df2Bydx, df2Bydy, newPoint, M, precision1, precision2);
+	}
+
+}
