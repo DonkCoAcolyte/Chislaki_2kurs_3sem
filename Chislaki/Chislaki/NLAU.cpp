@@ -2,23 +2,23 @@
 
 bool endCondition(double function1(double x, double y), double function2(double x, double y),
 	vector<double> answ, vector<double> deltaX, double precision1, double precision2) {
-	if (abs(function1(answ[0], answ[1])) > precision1) return 0;
-	if (abs(function2(answ[0], answ[1])) > precision1) return 0;
+	if (abs(function1(answ[0], answ[1])) > precision1) return false;
+	if (abs(function2(answ[0], answ[1])) > precision1) return false;
 	// |fi(X)| <= E1
 
 	for (int i = 0; i < 2; i++) {
 		if (answ[i] < 1) {
-			if (abs(deltaX[i]) > precision2) return 0;
+			if (abs(deltaX[i]) > precision2) return false;
 		}
 		else {
-			if (abs(deltaX[i]/answ[i]) > precision2) return 0;
+			if (abs(deltaX[i]/answ[i]) > precision2) return false;
 		}
 	}
 	// |deltaX| <= E2; X < 1
 	// |deltaX/X| <= E2; X >= 1
 	
 
-	return 1;
+	return true;
 }
 
 vector<double> jacobianRow(double function(double x, double y), vector<double> point, double M) {
