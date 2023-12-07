@@ -24,7 +24,6 @@ void ForwardRunGauss(vector<vector<double>>& table) { // DOESNT ACCOUNT FOR r < 
 				IMAX = ee;
 			}
 		}
-		AMAX; // ERROR:AMAX = 0
 
 		if (AMAX == 0) throw invalid_argument("beskonechnost' resheniy ili net resheniy (AMAX = 0)"); // if a column consists entirely of 0;
 
@@ -45,7 +44,6 @@ void ForwardRunGauss(vector<vector<double>>& table) { // DOESNT ACCOUNT FOR r < 
 		} // subtracted the "first" row from all later rows, multiplied by the first element of each later row;
 
 
-		if (1 > 0) int sasa = 0;
 	}
 }
 

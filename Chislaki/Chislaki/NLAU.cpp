@@ -16,9 +16,7 @@ bool endCondition(double function1(double x, double y), double function2(double 
 	}
 	// |deltaX| <= E2; X < 1
 	// |deltaX/X| <= E2; X >= 1
-	double chilidog = 1;
-	double f1 = function1(answ[0], answ[1]);
-	double f2 = function2(answ[0], answ[1]);
+	
 
 	return 1;
 }
@@ -36,7 +34,9 @@ vector<double> jacobianRow(double function(double x, double y), vector<double> p
 }
 
 vector<double> NLAUsolver(double function1(double x, double y), double function2(double x, double y),
-	vector<double> guessPoint, double M, double precision1, double precision2) {
+	vector<double> guessPoint, double M, double precision1, double precision2, unsigned int IterationsToDo) {
+
+	if (!IterationsToDo) throw 2;
 
 	/*double SLAU[3][2];*/
 	vector<vector<double>> SLAU = vector<vector<double>>();
@@ -70,14 +70,17 @@ vector<double> NLAUsolver(double function1(double x, double y), double function2
 		return newPoint;
 	}
 	else {
-	    return NLAUsolver(function1, function2, newPoint, M, precision1, precision2);
+		IterationsToDo--;
+	    return NLAUsolver(function1, function2, newPoint, M, precision1, precision2, IterationsToDo);
 	}
 
 }
 
 vector<double> NLAUsolverALT(double function1(double x, double y), double function2(double x, double y),
 	double df1Bydx(double x, double y), double df1Bydy(double x, double y), double df2Bydx(double x, double y), double df2Bydy(double x, double y),
-	vector<double> guessPoint, double M, double precision1, double precision2) {
+	vector<double> guessPoint, double M, double precision1, double precision2, unsigned int IterationsToDo) {
+
+	if (!IterationsToDo) throw 2;
 
 	/*double SLAU[3][2];*/
 	vector<vector<double>> SLAU = vector<vector<double>>();
@@ -110,7 +113,8 @@ vector<double> NLAUsolverALT(double function1(double x, double y), double functi
 		return newPoint;
 	}
 	else {
-		return NLAUsolverALT(function1, function2, df1Bydx, df1Bydy, df2Bydx, df2Bydy, newPoint, M, precision1, precision2);
+		IterationsToDo--;
+		return NLAUsolverALT(function1, function2, df1Bydx, df1Bydy, df2Bydx, df2Bydy, newPoint, M, precision1, precision2, IterationsToDo);
 	}
 
 }
