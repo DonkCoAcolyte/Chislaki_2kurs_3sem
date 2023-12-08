@@ -1,5 +1,11 @@
 #include "NLAU.h"
 
+enum class IterativeMethodError : uint8_t {
+	WrongInput = 0x01,
+	IterationCountOverhead,
+	
+};
+
 bool endCondition(double function1(double x, double y), double function2(double x, double y),
 	vector<double> answ, vector<double> deltaX, double precision1, double precision2) {
 	if (abs(function1(answ[0], answ[1])) > precision1) return false;
@@ -33,10 +39,10 @@ vector<double> jacobianRow(double function(double x, double y), vector<double> p
 	return answ;
 }
 
-vector<double> NLAUsolver(double function1(double x, double y), double function2(double x, double y),
+vector<double> NLAUsolver(double function1(double x, double y), double function2(double x, double y), // naming
 	vector<double> guessPoint, double M, double precision1, double precision2, unsigned int IterationsToDo) {
 
-	if (!IterationsToDo) throw 2;
+	if (!IterationsToDo) throw IterativeMethodError::IterationCountOverhead; // naming error to separate enum/variable in additional namespace
 
 	/*double SLAU[3][2];*/
 	vector<vector<double>> SLAU = vector<vector<double>>();
