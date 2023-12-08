@@ -1,6 +1,6 @@
 #include "SDU1order.h"
-#define dxMax 1
-
+#define dxMax 0.1
+#define dxMin 1.e-3
 double EulerExplicit_dxSolver(double& precision,
 	double& y1AbsMax, double& y2AbsMax,
 	double& drvY1, double& drvY2) {
@@ -22,6 +22,7 @@ double EulerExplicit_dxSolver(double& precision,
 	}
 
 	double dx = min(dx1, dx2);
+	if (dx < dxMin) dx = dxMin;
 	if (dx > dxMax) dx = dxMax;
 
 	return dx;
@@ -35,6 +36,8 @@ void EulerExplicit(vector<vector<double>>& answerContainer,
 	if (abs(YiStart[0]) > y1AbsMax) y1AbsMax = abs(YiStart[0]);
 	if (abs(YiStart[1]) > y2AbsMax) y2AbsMax = abs(YiStart[1]);
 	// found yiMax
+	if (y1AbsMax == 0) y1AbsMax = precision;
+	if (y2AbsMax == 0) y2AbsMax = precision;
 
 	double drvY1 = drv1(YiStart[0], YiStart[1], x0);
 	double drvY2 = drv2(YiStart[0], YiStart[1], x0);
